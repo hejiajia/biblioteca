@@ -21,9 +21,6 @@ public class BibliotecaAppTest {
         new BibliotecaApp().printWelcomeMsg();
         assertEquals("Welcome to Biblioteca!",outContent.toString());
     }
-    @Test
-    public void getTheBookList(){}
-
 
     @Test
     public void getBookListNumberOnly(){
