@@ -4,16 +4,26 @@ public class Book {
 
     private String author;
     private String yearPublished;
-    public Book(){
+    private boolean available;
 
-    }
+    public Book(){}
 
     public Book(String author,String yearPublished) {
         this.author = author;
         this.yearPublished = yearPublished;
+        this.available = true;
     }
 
-    public void booklist() {
-
+    public void checkout() {
+        this.setAvailable(false);
     }
+
+    public void setAvailable(boolean available){
+        this.available = available;
+    }
+
+    public boolean getAvailable() {
+        return this.available;
+    }
+
 }
