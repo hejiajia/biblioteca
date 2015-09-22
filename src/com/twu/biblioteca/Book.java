@@ -16,6 +16,7 @@ public class Book {
 
     public void checkout() {
         this.setAvailable(false);
+        System.out.print("Thank you! Enjoy the book!");
     }
 
     public void setAvailable(boolean available){
