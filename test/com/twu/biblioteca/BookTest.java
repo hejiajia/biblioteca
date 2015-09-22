@@ -40,4 +40,33 @@ public class BookTest{
 
         assertEquals("That book is not available.",outContent.toString());
     }
+
+    @Test
+    public void bookBeReturn(){
+        Book wantedBook = new Book("Martin","2010",111);
+        wantedBook.checkout();
+        wantedBook.beReturn();
+        assertEquals(true,wantedBook.getAvailable());
+    }
+
+    @Test
+    public void bookBeReturnSuccessfully(){
+        System.setOut(new PrintStream(outContent));
+
+        Book wantedBook = new Book("Java Book","2010",12345);
+        wantedBook.beReturn();
+
+        assertEquals("Thank you for returning the book.",outContent.toString());
+    }
+
+    @Test
+    public void bookBeReturnFailed(){
+        System.setOut(new PrintStream(outContent));
+
+        Book wantedBook = new Book("Martin","2010",12346);
+        wantedBook.beReturn();
+
+        assertEquals("That is not a valid book to return.",outContent.toString());
+    }
+
 }
