@@ -29,13 +29,9 @@ public class BibliotecaApp {
     public TheOption[] getMainMenu() {
         TheOption[] listBooks = new TheOption[1];
         String name = "List Books";
-        listBooks[0] = new TheOption(name, 1);
+        listBooks[0] = new TheOption(name, true);
 
         return listBooks;
-    }
-
-    public void a(){
-        TheOption aa = new TheOption("hhhhh", 1);
     }
 
 

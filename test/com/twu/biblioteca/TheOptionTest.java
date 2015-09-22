@@ -16,24 +16,39 @@ public class TheOptionTest{
 
     @Test
     public void getMsgWhenClickValidMainMenu(){
-        int optionStatus = 1;
-        TheOption invalidOption = new TheOption("invalid",optionStatus);
+        boolean optionStatus = true;
+        TheOption validOption = new TheOption("validOption",optionStatus);
 
         System.setOut(new PrintStream(outContent));
-        invalidOption.clickOption();
+        validOption.clickOption();
 
         assertEquals("Good choose!", outContent.toString());
     }
 
     @Test
      public void getMsgWhenClickInvalidMainMenu(){
-        int optionStatus = -1;
+        boolean optionStatus = false;
         TheOption invalidOption = new TheOption("invalid",optionStatus);
 
         System.setOut(new PrintStream(outContent));
         invalidOption.clickOption();
 
         assertEquals("Select a valid option!",outContent.toString());
+    }
+
+    @Test
+    public void cannotClickOptionAfterClickQuit(){
+        System.setOut(new PrintStream(outContent));
+
+        TheOption quitOption = new TheOption("Quit",true);
+        quitOption.clickOption();
+
+        outContent.reset();
+
+        TheOption validOption = new TheOption("validOption",true);
+        validOption.clickOption();
+
+        assertEquals("Sorry,you can't choose option after you quit!", outContent.toString());
     }
 
 }
