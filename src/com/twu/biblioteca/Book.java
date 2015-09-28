@@ -63,13 +63,15 @@ public class Book {
         return this.available;
     }
 
-    public void beReturn() {
+    public boolean beReturn() {
         if (this.getBookValidById()){
             this.setAvailable(true);
             System.out.print("Thank you for returning the book.");
+            return true;
         }else {
             System.out.print("That is not a valid book to return.");
         }
+        return false;
     }
 
     public boolean getBookValidById(){

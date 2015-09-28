@@ -43,7 +43,17 @@ public class User {
         Book book = Book.getBookById(bookId);
         if(book.checkout()){
             int id = book.getBookId();
-            this.setCheckoutBooks(id);
+            this.setCheckoutBooks(id,true);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public boolean returnBook(int bookId) {
+        Book book = Book.getBookById(bookId);
+        if(book.beReturn()){
+            this.setCheckoutBooks(bookId,false);
             return true;
         }else{
             return false;
@@ -53,13 +63,19 @@ public class User {
     public List<Integer> getCheckoutBooks() {
         return this.checkoutBooks;
     }
-    public void setCheckoutBooks(int id){
+    public void setCheckoutBooks(int id,boolean action){
         List<Integer> ids = this.getCheckoutBooks();
-        ids.add(id);
+        if (action){
+            ids.add(id);
+        }else{
+            for (int i=0;i<ids.size();i++){
+                if (id == ids.get(i)){
+                    ids.remove(i);
+                }
+            }
+        }
         this.checkoutBooks = ids;
     }
 
-    public boolean returnBook(int bookId) {
-        return false;
-    }
+
 }
