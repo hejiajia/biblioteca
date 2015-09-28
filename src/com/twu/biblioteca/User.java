@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
+
+    private String phoneNumber;
+    private String emailAddr;
     private String userName;
     private boolean loginStatus;
     public List<Integer> checkoutBooks;
@@ -13,6 +16,13 @@ public class User {
         this.loginStatus = false;
         checkoutBooks = new ArrayList<Integer>();
     }
+
+    public User(String userName,String emailAddr,String phoneNumber) {
+        this(userName);
+        this.emailAddr = emailAddr;
+        this.phoneNumber = phoneNumber;
+    }
+
     private boolean getLoginStatus() {
         return this.loginStatus;
     }
@@ -53,7 +63,7 @@ public class User {
     public boolean returnBook(int bookId) {
         Book book = Book.getBookById(bookId);
         if(book.beReturn()){
-            this.setCheckoutBooks(bookId,false);
+            this.setCheckoutBooks(bookId, false);
             return true;
         }else{
             return false;
@@ -63,6 +73,7 @@ public class User {
     public List<Integer> getCheckoutBooks() {
         return this.checkoutBooks;
     }
+
     public void setCheckoutBooks(int id,boolean action){
         List<Integer> ids = this.getCheckoutBooks();
         if (action){
@@ -77,5 +88,11 @@ public class User {
         this.checkoutBooks = ids;
     }
 
-
+    public String getUserInfo() {
+        if (this.getLoginStatus()) {
+            return "Name:" + this.userName + " Email:" + this.emailAddr + " Telephone:" + this.phoneNumber;
+        }else {
+            return "";
+        }
+    }
 }

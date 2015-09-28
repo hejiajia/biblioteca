@@ -17,7 +17,7 @@ public class Book {
     }
 
     public Book(String author,String yearPublished,int bookId) {
-        new Book(author,yearPublished);
+        this(author,yearPublished);
         this.bookId = bookId;
     }
 

@@ -36,4 +36,15 @@ public class UserTest {
         assertEquals(false,tom.getCheckoutBooks().contains(bookId));
     }
 
+    @Test
+    public void testUserInfo(){
+        User tom = new User("Tom Hanks","tom@hw.com","13012345678");
+        String info1 = tom.getUserInfo();
+        assertEquals("",info1);
+
+        tom.setloginStatus(true);
+        String info2 = tom.getUserInfo();
+        assertEquals("Name:Tom Hanks Email:tom@hw.com Telephone:13012345678", info2);
+    }
+
 }
