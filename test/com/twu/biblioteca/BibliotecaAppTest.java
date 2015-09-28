@@ -5,6 +5,9 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+//import java.util.ArrayList;
+//import java.util.List;
 
 
 import static org.junit.Assert.assertArrayEquals;
@@ -36,9 +39,11 @@ public class BibliotecaAppTest {
 
         Book[] bookList = new BibliotecaApp().getBookListWithDetails();
 
-        assertEquals(expectedBookList[0].toString(),bookList[0].toString());
-        assertEquals(expectedBookList[1].toString(),bookList[1].toString());
+        assertEquals(expectedBookList.length,bookList.length);
+        assertEquals(true,expectedBookList[0].equals(bookList[0]));
+        assertEquals(true,expectedBookList[1].equals(bookList[1]));
     }
+
     @Test
     public void checkMainMenu(){
         String nameOfOption = "List Books";
@@ -47,7 +52,42 @@ public class BibliotecaAppTest {
         TheOption[] mainMenu = new BibliotecaApp().getMainMenu();
 
         assertEquals(lenthOfMainMenu,mainMenu.length);
-        assertEquals(nameOfOption,mainMenu[0].toString());
+        assertEquals(nameOfOption, mainMenu[0].getName());
+    }
+
+    @Test
+    public void testGetMovieListWithDetails(){
+
+    }
+
+
+    @Test
+    public void testGetMovieList(){
+        ArrayList<Movie> expectedMovieList = new ArrayList<Movie>();
+        expectedMovieList.add(new Movie(true, "Before sunset", "Richard Stuart Linklater", 2004));
+        expectedMovieList.add(new Movie(true, "The Shawshank Redemption", "Frank Darabon", 1994));
+
+        ArrayList<Movie> movieList = new BibliotecaApp().getAvailableMovieListWithDetails();
+
+        assertEquals(expectedMovieList.size(),movieList.size());
+        assertEquals(true, ((Movie) expectedMovieList.get(0)).equals((Movie) movieList.get(0)));
+        assertEquals(true, ((Movie) expectedMovieList.get(1)).equals((Movie) movieList.get(1)));
+    }
+
+    @Test
+    public void  checkLoginSuccessfully(){
+        String libraryNumber = "1111-222";
+        String passwordInput = "abcdef";
+        Boolean result = new BibliotecaApp().login(libraryNumber, passwordInput);
+        assertEquals(true,result);
+    }
+
+    @Test
+    public void  checkLoginfailed(){
+        String libraryNumber = "1111-222";
+        String passwordInput = "123456";
+        Boolean result = new BibliotecaApp().login(libraryNumber, passwordInput);
+        assertEquals(false,result);
     }
 
 

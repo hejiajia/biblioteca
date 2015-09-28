@@ -4,7 +4,7 @@ public class Book {
 
     private String author;
     private String yearPublished;
-    private boolean available;
+    private boolean available = true;
     private int bookId;
 
     public Book(){}
@@ -21,13 +21,38 @@ public class Book {
         this.bookId = bookId;
     }
 
-    public void checkout() {
+    public boolean checkout() {
         if (this.getAvailable()) {
             System.out.print("Thank you! Enjoy the book!");
             this.setAvailable(false);
+            return true;
         }else{
             System.out.print("That book is not available.");
+            return false;
         }
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(obj == null){
+            return false;
+        }else {
+            if(this.getClass() == obj.getClass()){
+                Book book = (Book) obj;
+                if(this.getAuthorName().equals(book.getAuthorName())){
+                    return true;
+                }else{
+                    return false;
+                }
+
+            }else{
+                return false;
+            }
+        }
+    }
+
+    private String getAuthorName() {
+        return this.author;
     }
 
     public void setAvailable(boolean available){
@@ -56,4 +81,16 @@ public class Book {
         }
     }
 
+    public static Book getBookById(int bookId) {
+        if (bookId%2 == 1){
+            return new Book("Martin","2010",bookId);
+        }else{
+            return new Book("Java","2000",bookId);
+        }
+    }
+
+
+    public int getBookId() {
+        return this.bookId;
+    }
 }
